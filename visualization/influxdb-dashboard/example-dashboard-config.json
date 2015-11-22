@@ -1,10 +1,10 @@
 {
-    "prefix": "bigdata.profiler",
+    "prefix": "",
     "influxdb": {
-	"host": "localhost",
-	"port": 8086,
-	"username": "profiler_user",
-	"password": "profiler_password",
-	"database": "profiler_database"
+	"host": "metrics-2.zignallabs.com",
+	"port": 8087,
+	"username": "root",
+	"password": "root",
+	"database": "elasticsearch"
     }
 }
