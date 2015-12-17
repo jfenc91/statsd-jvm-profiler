@@ -11,7 +11,7 @@ var canaryMeasurement = "heap.total.max";
 
 exports.getData = function(user, job, flow, stage, phase, jvmName, metric, callback) {
     var optionalJvmName = jvmName ? "' and jvmName = '" + jvmName + "'": "'";
-    var query = "select value from /^" + metric + ".*/ where time > now() - 10m and username = '" + user + "' and job = '" + job + "' and flow = '" + flow + "' and stage = '" + stage + "' and phase = '" + phase + optionalJvmName;
+    var query = "select value from /^" + metric + ".*/ where username = '" + user + "' and job = '" + job + "' and flow = '" + flow + "' and stage = '" + stage + "' and phase = '" + phase + optionalJvmName;
     client.queryRaw(query, function(err, res) {
 	var series = res[0].series;
 	var results = {};
@@ -32,7 +32,7 @@ exports.getData = function(user, job, flow, stage, phase, jvmName, metric, callb
 
 exports.getFlameGraphData = function(user, job, flow, stage, phase, jvmName, prefix, callback) {
     var optionalJvmName = jvmName ? "' and jvmName = '" + jvmName + "'": "'";
-    var query = "select value from /^" + prefix + ".*/ where time > now() - 10m and username = '" + user + "' and job = '" + job + "' and flow = '" + flow + "' and stage = '" + stage + "' and phase = '" + phase + optionalJvmName;
+    var query = "select value from /^" + prefix + ".*/ where username = '" + user + "' and job = '" + job + "' and flow = '" + flow + "' and stage = '" + stage + "' and phase = '" + phase + optionalJvmName;
     client.queryRaw(query, function(err, res) {
 	var series = res[0].series;
 	var results = {};

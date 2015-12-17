@@ -13,7 +13,7 @@ exports.index = function(req, res){
 };
 
 exports.render = function(req, res){
-    res.render('render', {user: req.query['user'], job: req.query['job'], flow: req.query['flow'], stage: req.query['stage'], phase: req.query['phase'],  phase: req.query['start'],  phase: req.query['stop'], jvmName: req.query['jvm'], 'prefix': prefix, 'refresh': refresh});
+    res.render('render', {user: req.query['user'], job: req.query['job'], flow: req.query['flow'], stage: req.query['stage'], phase: req.query['phase'], jvmName: req.query['jvm'], 'prefix': prefix, 'refresh': refresh});
 };
 
 exports.config = function(req, res) {
@@ -32,8 +32,6 @@ exports.data = function(req, res) {
     var flow = req.params['flow'];
     var stage = req.params['stage'];
     var phase = req.params['phase'];
-    var start = req.params['start'];
-    var stop = req.params['stop'];
     var jvmName = req.params['jvm'];
     var metric = req.params['metric'];
     influx.getData(user, job, flow, stage, phase, jvmName, metric, function(data) {
@@ -48,8 +46,6 @@ exports.cpu = function(req, res) {
     var stage = req.params['stage'];
     var phase = req.params['phase'];
     var jvmName = req.params['jvm'];
-    var start = req.params['start'];
-    var stop = req.params['stop'];
     var prefix = req.params['prefix'];
     influx.getFlameGraphData(user, job, flow, stage, phase, jvmName, prefix, function(metrics) {
 	flamegraph.getFlameGraph(metrics, function(data) {
